@@ -1,0 +1,86 @@
+from engine.scenario import SCENARIO
+from engine.events import get_random_event, apply_event
+from engine.property_system import PropertySystem
+from engine.timeline import Timeline
+
+
+class GameEngine:
+    def __init__(self, role="TENANT"):
+        self.role = role
+
+        self.state = "start"  # current scenario node id
+        self.stats = {"compliance": 0, "trust": 0, "evidence": 0, "legal_risk": 0}
+
+        self.flags = set()
+
+        self.property = PropertySystem()
+        self.timeline = Timeline()
+
+        self.last_explanation = ""
+        self.last_event_message = ""
+
+    def get_current_node(self):
+        return SCENARIO[self.state]
+        if node is None:
+            raise ValueError(f"No scenario defined for state {self.state}")
+
+        return node
+
+    def get_weather(self) -> str:
+        behaviour_score = (
+            self.stats["compliance"]
+            + self.stats["trust"]
+            + self.stats["evidence"]
+            - self.stats["legal_risk"]
+        )
+
+        # incorporate property health (optional influence)
+        prop = self.property.overall_health()  # 0-100
+        if prop < 40:
+            behaviour_score -= 3
+        elif prop < 60:
+            behaviour_score -= 1
+
+        if behaviour_score >= 8:
+            return "Sunny"
+        elif behaviour_score >= 3:
+            return "Windy"
+        return "Stormy"
+
+    def apply_choice(self, choice_index: int) -> str:
+        node = self.get_current_node()
+        choices = node["choices"]
+
+        if not choices:
+            self.last_explanation = ""
+            return ""
+
+        if choice_index < 0 or choice_index >= len(choices):
+            self.last_explanation = "Invalid choice."
+            return self.last_explanation
+
+        choice = choices[choice_index]
+
+        # Apply effects
+        effects = choice.get("effects", {})
+        for k, v in effects.items():
+            if k in self.stats:
+                self.stats[k] += v
+
+        # Advance time
+        self.timeline.advance(1)
+
+        # Move state
+        self.state = choice["next"]
+
+        # Explanation
+        self.last_explanation = choice.get("explain", "")
+
+        # Random event (after choice)
+        ev = get_random_event()
+        self.last_event_message = apply_event(self, ev)
+
+        return self.last_explanation
+
+    def is_game_over(self) -> bool:
+        return len(self.get_current_node()["choices"]) == 0
