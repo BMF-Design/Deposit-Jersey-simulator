@@ -187,51 +187,51 @@ if engine is None:
     col1, col2, col3 = st.columns([1,2,1])
 
     with col2:
-    st.markdown(
-        """
-        <div style="color:black; font-size:18px; line-height:1.6;">
+        st.markdown(
+            """
+            <div style="color:black; font-size:18px; line-height:1.6;">
 
-        <h3 style="color:black;">Welcome to the Tenancy Deposit Game</h3>
+            <h3 style="color:black;">Welcome to the Tenancy Deposit Game</h3>
 
-        <p>
-        In this interactive game, your <b>decisions shape how a tenancy unfolds</b>.
-        Small choices can have big consequences:
-        </p>
+            <p>
+            In this interactive game, your <b>decisions shape how a tenancy unfolds</b>.
+            Small choices can have big consequences:
+            </p>
 
-        <ul>
-        <li>Will the deposit be protected correctly?</li>
-        <li>Will communication build trust or create conflict?</li>
-        <li>Will the tenancy end smoothly — or lead to a dispute?</li>
-        </ul>
+            <ul>
+            <li>Will the deposit be protected correctly?</li>
+            <li>Will communication build trust or create conflict?</li>
+            <li>Will the tenancy end smoothly — or lead to a dispute?</li>
+            </ul>
 
-        <hr>
+            <hr>
 
-        <h4>What your decisions influence</h4>
+            <h4>What your decisions influence</h4>
 
-        <ul>
-        <li>✔ <b>Trust</b> between tenant and landlord</li>
-        <li>✔ <b>Compliance</b> with tenancy rules</li>
-        <li>✔ <b>Evidence</b> available in a dispute</li>
-        <li>✔ <b>Legal risk</b></li>
-        </ul>
+            <ul>
+            <li>✔ <b>Trust</b> between tenant and landlord</li>
+            <li>✔ <b>Compliance</b> with tenancy rules</li>
+            <li>✔ <b>Evidence</b> available in a dispute</li>
+            <li>✔ <b>Legal risk</b></li>
+            </ul>
 
-        <hr>
+            <hr>
 
-        <h4>What happens at the end</h4>
+            <h4>What happens at the end</h4>
 
-        <p>
-        The simulator evaluates the likely outcome of an 
-        <b>ADR (Alternative Dispute Resolution)</b> decision.
-        </p>
+            <p>
+            The simulator evaluates the likely outcome of an 
+            <b>ADR (Alternative Dispute Resolution)</b> decision.
+            </p>
 
-        <p style="text-align:center; font-size:22px; font-weight:600; margin-top:30px;">
-        👉 Select a character from the sidebar to begin the simulation
-        </p>
+            <p style="text-align:center; font-size:22px; font-weight:600; margin-top:30px;">
+            👉 Select a character from the sidebar to begin the simulation
+            </p>
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     
     st.stop()
 
