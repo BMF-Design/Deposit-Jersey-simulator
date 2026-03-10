@@ -189,11 +189,10 @@ if engine is None:
     with col2:
         st.markdown(    
         """
-        ### Welcome to the Tenancy Simulator
+        ### Welcome to the Tenancy Deposit Game
 
-        In this interactive scenario, your **decisions shape how a tenancy unfolds**.
-
-        Small choices can have big consequences:
+        In this interactive game, your **decisions shape how a tenancy 
+        unfolds**. Small choices can have big consequences:
 
         • Will the deposit be protected correctly?  
         • Will communication build trust or create conflict?  
@@ -210,7 +209,8 @@ if engine is None:
     ---
         ### What happens at the end
 
-        The simulator evaluates the likely outcome of an **ADR (Alternative Dispute Resolution)** decision.
+        The simulator evaluates the likely outcome of an **ADR (Alternative 
+        Dispute Resolution)** decision.
 
         👉 **Choose a character from the sidebar to begin your journey.**
         """
