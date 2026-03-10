@@ -175,7 +175,7 @@ if engine is None:
         border:1px solid #dde3ff;
         margin-bottom:20px;
     ">
-        <h1 style="margin-bottom:5px;">🎮 Tenancy Training Simulator</h1>
+        <h1 style="margin-bottom:5px;">🎮 Tenancy DepositTraining Game</h1>
         <p style="font-size:18px; opacity:0.85;">
         Learn how tenancy decisions affect trust, compliance and deposit outcomes.
         </p>
@@ -187,36 +187,51 @@ if engine is None:
     col1, col2, col3 = st.columns([1,2,1])
 
     with col2:
-        st.markdown(    
+    st.markdown(
         """
-        ### Welcome to the Tenancy Deposit Game
+        <div style="color:black; font-size:18px; line-height:1.6;">
 
-        In this interactive game, your **decisions shape how a tenancy 
-        unfolds**. Small choices can have big consequences:
+        <h3 style="color:black;">Welcome to the Tenancy Deposit Game</h3>
 
-        • Will the deposit be protected correctly?  
-        • Will communication build trust or create conflict?  
-        • Will the tenancy end smoothly — or lead to a dispute?
+        <p>
+        In this interactive game, your <b>decisions shape how a tenancy unfolds</b>.
+        Small choices can have big consequences:
+        </p>
 
-    ---
-        ### What your decisions influence
+        <ul>
+        <li>Will the deposit be protected correctly?</li>
+        <li>Will communication build trust or create conflict?</li>
+        <li>Will the tenancy end smoothly — or lead to a dispute?</li>
+        </ul>
 
-        ✔ **Trust** between tenant and landlord  
-        ✔ **Compliance** with tenancy rules  
-        ✔ **Evidence** available in a dispute  
-        ✔ **Legal risk**
+        <hr>
 
-    ---
-        ### What happens at the end
+        <h4>What your decisions influence</h4>
 
-        The simulator evaluates the likely outcome of an **ADR (Alternative 
-        Dispute Resolution)** decision.
+        <ul>
+        <li>✔ <b>Trust</b> between tenant and landlord</li>
+        <li>✔ <b>Compliance</b> with tenancy rules</li>
+        <li>✔ <b>Evidence</b> available in a dispute</li>
+        <li>✔ <b>Legal risk</b></li>
+        </ul>
 
-        👉 **Choose a character from the sidebar to begin your journey.**
-        """
-        )
-    
-    st.info("Select a character from the sidebar to begin the simulation.")
+        <hr>
+
+        <h4>What happens at the end</h4>
+
+        <p>
+        The simulator evaluates the likely outcome of an 
+        <b>ADR (Alternative Dispute Resolution)</b> decision.
+        </p>
+
+        <p style="text-align:center; font-size:22px; font-weight:600; margin-top:30px;">
+        👉 Select a character from the sidebar to begin the simulation
+        </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     
     st.stop()
 
