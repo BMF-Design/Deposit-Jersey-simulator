@@ -175,7 +175,7 @@ if engine is None:
         border:1px solid #dde3ff;
         margin-bottom:20px;
     ">
-        <h1 style="margin-bottom:5px;">🎮 Tenancy Deposit Game</h1>
+        <h1 style="margin-bottom:5px;">Tenancy Deposit Game</h1>
         <p style="font-size:18px; opacity:0.85;">
         Learn how tenancy decisions affect trust, compliance and deposit outcomes.
         </p>
@@ -187,51 +187,72 @@ if engine is None:
     col1, col2, col3 = st.columns([1,2,1])
 
     with col2:
-        st.markdown(
-            """
-            <div style="color:black; font-size:18px; line-height:1.6;">
 
-            <h3 style="color:black;">Welcome to the Tenancy Deposit Game</h3>
+        st.markdown("""
+        <div style='
+            padding:28px;
+            border-radius:16px;
+            background:#ffffff;
+            box-shadow:0 6px 16px rgba(0,0,0,0.08);
+            line-height:1.7;
+            color:black;
+            font-size:18px;
+        '>
 
-            <p>
-            In this interactive game, your <b>decisions shape how a tenancy unfolds</b>.
-            Small choices can have big consequences:
-            </p>
+        <h2 style='margin-top:0;'>🎮 Welcome to the Tenancy Deposit Game</h2>
 
-            <ul>
-            <li>Will the deposit be protected correctly?</li>
-            <li>Will communication build trust or create conflict?</li>
-            <li>Will the tenancy end smoothly — or lead to a dispute?</li>
-            </ul>
+        <p>
+        In this interactive game, your <b>decisions shape how a tenancy unfolds</b>.
+        Even small choices can have significant consequences.
+        </p>
 
-            <hr>
+        <ul>
+            <li>🔒 Will the deposit be protected correctly?</li>
+            <li>💬 Will communication build trust or create conflict?</li>
+            <li>⚖️ Will the tenancy end smoothly — or lead to a dispute?</li>
+        </ul>
 
-            <h4>What your decisions influence</h4>
+        <hr>
 
-            <ul>
+        <h3>🎯 What your decisions influence</h3>
+
+        <ul>
             <li>✔ <b>Trust</b> between tenant and landlord</li>
             <li>✔ <b>Compliance</b> with tenancy rules</li>
             <li>✔ <b>Evidence</b> available in a dispute</li>
             <li>✔ <b>Legal risk</b></li>
-            </ul>
+        </ul>
 
-            <hr>
+        <hr>
 
-            <h4>What happens at the end</h4>
+        <h3>📊 What happens at the end</h3>
 
-            <p>
-            The simulator evaluates the likely outcome of an 
-            <b>ADR (Alternative Dispute Resolution)</b> decision.
-            </p>
+        <p>
+        The simulator evaluates the likely outcome of an 
+        <b>ADR (Alternative Dispute Resolution)</b> decision.
+        </p>
 
-            <p style="text-align:center; font-size:22px; font-weight:600; margin-top:30px;">
-            👉 Select a character from the sidebar to begin the simulation
-            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+
+        st.markdown("""
+        <div style='
+            text-align:center;
+            font-size:24px;
+            font-weight:600;
+            padding:20px;
+            border-radius:14px;
+            background:#eef4ff;
+            border:1px solid #cfdcff;
+            margin-top:25px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.05);
+        '>
+
+        👉 Select a character from the sidebar to begin the simulation
+
+        </div>
+        """, unsafe_allow_html=True)
     
     st.stop()
 
@@ -529,13 +550,22 @@ with right:
 
     st.write("### ✅ Good Practice Meter")
     st.progress(good_practice_progress)
-   
+
     if good_practice_progress < 0.33:
-        st.caption("⚠️ Risky tenancy behaviour")
+        st.markdown(
+            "<p style='color:black; font-size:18px; font-weight:600;'>⚠️ Risky tenancy behaviour</p>",
+            unsafe_allow_html=True
+        )
     elif good_practice_progress < 0.66:
-        st.caption("🙂 Some good practice")
+        st.markdown(
+            "<p style='color:black; font-size:18px; font-weight:600;'>🙂 Some good practice</p>",
+            unsafe_allow_html=True
+        )
     else:
-        st.caption("🏆 Strong tenancy practice")
+        st.markdown(
+        "<p style='color:black; font-size:18px; font-weight:600;'>🏆 Strong tenancy practice</p>",
+        unsafe_allow_html=True
+    )
 
     if engine:
         st.metric("Compliance", engine.stats.compliance)
