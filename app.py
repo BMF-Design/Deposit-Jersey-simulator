@@ -175,7 +175,7 @@ if engine is None:
         border:1px solid #dde3ff;
         margin-bottom:20px;
     ">
-        <h1 style="margin-bottom:5px;">🎮 Tenancy DepositTraining Game</h1>
+        <h1 style="margin-bottom:5px;">🎮 Tenancy Deposit Game</h1>
         <p style="font-size:18px; opacity:0.85;">
         Learn how tenancy decisions affect trust, compliance and deposit outcomes.
         </p>
