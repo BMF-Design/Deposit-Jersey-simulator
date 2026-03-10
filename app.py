@@ -1,4 +1,7 @@
 import streamlit as st
+import random
+import os
+
 from engine.engine import GameEngine
 from engine.states import Role
 
@@ -15,8 +18,6 @@ if "role" not in st.session_state:
 
 engine = st.session_state.get("engine", None)
 
-import os
-
 SOUND_MAP = {
     "Sunny": "assets/sounds/sunny.mp3",
     "Windy": "assets/sounds/windy.mp3",
@@ -25,10 +26,21 @@ SOUND_MAP = {
 
 def play_weather_sound(weather):
 
-    sound_file = SOUND_MAP.get(weather)
+    last_weather = st.session_state.get("last_weather")
 
-    if sound_file:
-        st.audio(sound_file, autoplay=True)
+    # Only play when weather changes
+    if weather != last_weather:
+
+        sound_file = SOUND_MAP.get(weather)
+
+        if sound_file and os.path.exists(sound_file):
+
+            with open(sound_file, "rb") as f:
+                audio_bytes = f.read()
+
+            st.audio(audio_bytes, format="audio/mp3", autoplay=True)
+
+        st.session_state["last_weather"] = weather
         
 def set_background(weather):
 
@@ -245,12 +257,13 @@ if current_role:
 
             role = st.session_state.get("role")
 
-            # Remove only game-related state
-            for key in ["engine", "last_weather"]:
-                if key in st.session_state:
-                    del st.session_state[key]
+            st.session_state.pop("engine", None)
+            st.session_state.pop("last_weather", None)
+            st.session_state.pop("feedback", None)
+            st.session_state.pop("await_continue", None)
 
             init_game(role)
+
             st.rerun()
 
         if st.button("🔁 Change Character"):
@@ -295,11 +308,24 @@ st.divider()
 
 st.markdown("### Tenancy Lifecycle")
 
-st.progress(min(engine.timeline.month / 24, 1.0))
+progress = min((engine.timeline.month - 1) / 24, 1.0)
 
-st.caption(
-    "Start → Agreement → Deposit Protection → Mid Tenancy → Checkout → ADR / Outcome"
-)
+st.progress(progress)
+
+phase = engine.timeline.month
+
+if phase <= 2:
+    stage = "🏁 Start of Tenancy"
+elif phase <= 6:
+    stage = "📄 Agreement & Deposit Protection"
+elif phase <= 18:
+    stage = "🏡 Mid Tenancy"
+elif phase <= 23:
+    stage = "🔍 Checkout Preparation"
+else:
+    stage = "⚖️ ADR / Deposit Resolution"
+
+st.caption(stage)
 
 left, right = st.columns([2, 1], gap="large")
 

@@ -53,14 +53,16 @@ class GameEngine:
         property_health = self.property.overall_health()
 
         # property condition affects weather
-        if property_health < 50:
-            score -= 2
-        elif property_health > 85:
-            score += 1
-        if score >= 5:
-            return "Sunny"
+        if property_health < 40:
+            score -= 1
+
+        elif property_health > 90:
+              score += 1
     
-        elif score >= 1:
+        if score >= 3:
+            return "Sunny"
+
+        elif score >= 0:
             return "Windy"
         else:
             return "Stormy"
@@ -200,10 +202,8 @@ class GameEngine:
         elif self.timeline.month == 24:
             self.last_event_message = "🏁 Tenancy ending soon. Deposit return and evidence become critical."
 
-        # random events
-        if self.state != GameState.GAME_OVER and random.random() < 0.4:
-            event = self.random_event()
-            self.last_event_message = event
+        # random events (disabled)
+        pass
 
         # refresh weather state
         self.current_weather = self.get_weather_state()
